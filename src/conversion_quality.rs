@@ -16,6 +16,8 @@ pub struct ConversionQuality {
     pub compression: bool,
     /// Is the ordering of the data retained?
     pub ordering: bool,
+    /// Can we process this in a stream, without pulling the whole file into memory?
+    pub streamability: bool
 }
 
 macro_rules! add_for {
@@ -36,7 +38,8 @@ impl ConversionQuality {
             self.formatting => FORMATTING_WEIGHTING,
             self.readability => READABILITY_WEIGHTING,
             self.compression => COMPRESSION_WEIGHTING,
-            self.ordering => ORDERING_WEIGHTING
+            self.ordering => ORDERING_WEIGHTING,
+            self.streamability => STREAMABILITY_WEIGHTING
         );
         qual
     }
